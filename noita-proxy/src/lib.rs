@@ -294,17 +294,17 @@ impl GameSettings {
                                 {
                                     let mut temp =
                                         game_settings.dont_steal.unwrap_or(def.dont_steal);
-                                    if ui
-                                        .checkbox(&mut temp, tr("pvp-dont-steal"))
-                                        .changed()
-                                    {
+                                    if ui.checkbox(&mut temp, tr("pvp-dont-steal")).changed() {
                                         game_settings.dont_steal = Some(temp)
                                     }
                                 }
                                 {
                                     let mut temp =
                                         game_settings.chest_on_win.unwrap_or(def.chest_on_win);
-                                    if ui.checkbox(&mut temp, tr("pvp-spawn-chest-on-win")).changed() {
+                                    if ui
+                                        .checkbox(&mut temp, tr("pvp-spawn-chest-on-win"))
+                                        .changed()
+                                    {
                                         game_settings.chest_on_win = Some(temp)
                                     }
                                 }
@@ -317,12 +317,9 @@ impl GameSettings {
                                         let mut temp = game_settings
                                             .wait_for_time
                                             .unwrap_or(def.wait_for_time);
-                                        if ui
-                                            .checkbox(&mut temp, tr("pvp-wait-on-time"))
-                                            .changed()
-                                        {
-                                            game_settings.wait_for_time = Some(temp)
-                                        }
+                                    if ui.checkbox(&mut temp, tr("pvp-wait-on-time")).changed() {
+                                        game_settings.wait_for_time = Some(temp)
+                                    }
                                     }
                                     {
                                         ui.label(tr("pvp-time-in-hm"));
@@ -344,13 +341,7 @@ impl GameSettings {
                                     let mut temp = game_settings
                                         .wait_on_players
                                         .unwrap_or(def.wait_on_players);
-                                    if ui
-                                        .checkbox(
-                                            &mut temp,
-                                            tr("pvp-wait-on-players"),
-                                        )
-                                        .changed()
-                                    {
+                                    if ui.checkbox(&mut temp, tr("pvp-wait-on-players")).changed() {
                                         game_settings.wait_on_players = Some(temp)
                                     }
                                 }
@@ -398,10 +389,7 @@ impl GameSettings {
                 let mut temp = game_settings
                     .nice_terraforming
                     .unwrap_or(def.nice_terraforming);
-                if ui
-                    .checkbox(&mut temp, tr("fix-unseen-chunks"))
-                    .changed()
-                {
+                if ui.checkbox(&mut temp, tr("fix-unseen-chunks")).changed() {
                     game_settings.nice_terraforming = Some(temp)
                 }
             }
@@ -941,21 +929,17 @@ impl AudioSettings {
         changed |= ui
             .add(Slider::new(&mut self.global_output_volume, 0.0..=8.0))
             .changed();
-        changed |= ui.checkbox(&mut self.loopback, tr("audio-loopback")).changed();
+        changed |= ui
+            .checkbox(&mut self.loopback, tr("audio-loopback"))
+            .changed();
         changed |= ui
             .checkbox(&mut self.global, tr("audio-global-playback"))
             .changed();
         changed |= ui
-            .checkbox(
-                &mut self.push_to_talk,
-                tr("audio-push-to-talk"),
-            )
+            .checkbox(&mut self.push_to_talk, tr("audio-push-to-talk"))
             .changed();
         changed |= ui
-            .checkbox(
-                &mut self.player_position,
-                tr("audio-use-player-position"),
-            )
+            .checkbox(&mut self.player_position, tr("audio-use-player-position"))
             .changed();
         changed |= ui.checkbox(&mut self.mute_in, tr("audio-mute-input")).changed();
         changed |= ui
@@ -964,7 +948,9 @@ impl AudioSettings {
         changed |= ui
             .checkbox(&mut self.mute_in_while_dead, tr("audio-mute-input-dead"))
             .changed();
-        changed |= ui.checkbox(&mut self.mute_out, tr("audio-mute-output")).changed();
+        changed |= ui
+            .checkbox(&mut self.mute_out, tr("audio-mute-output"))
+            .changed();
         if main {
             changed |= ui.checkbox(&mut self.disabled, tr("audio-disabled")).changed();
             if self.input_devices.is_empty() {
