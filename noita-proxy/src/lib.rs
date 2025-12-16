@@ -948,7 +948,10 @@ impl AudioSettings {
             .checkbox(&mut self.mute_in, tr("audio-mute-input"))
             .changed();
         changed |= ui
-            .checkbox(&mut self.mute_in_while_polied, tr("audio-mute-input-polied"))
+            .checkbox(
+                &mut self.mute_in_while_polied,
+                tr("audio-mute-input-polied"),
+            )
             .changed();
         changed |= ui
             .checkbox(&mut self.mute_in_while_dead, tr("audio-mute-input-dead"))
@@ -2417,9 +2420,10 @@ impl App {
                                 ui.add(Slider::new(&mut self.noitalog_number, 0..=l - 1));
                             }
                             if let Some(clipboard) = self.clipboard.as_mut()
-                                && ui.button(tr("save-to-clipboard")).clicked() {
-                                    let _ = clipboard.set_text(&s);
-                                }
+                                && ui.button(tr("save-to-clipboard")).clicked()
+                            {
+                                let _ = clipboard.set_text(&s);
+                            }
                         });
                         ScrollArea::vertical()
                             .auto_shrink([false; 2])
@@ -2439,10 +2443,10 @@ impl App {
                         path.parent().unwrap().join("ew_log.txt")
                     } else {
                         "ew_log.txt".into()
-                    })
-                        && s.len() > self.proxylog.len() {
-                            self.proxylog = s
-                        }
+                    }) && s.len() > self.proxylog.len()
+                    {
+                        self.proxylog = s
+                    }
                     let mut s = self.proxylog.clone() + "\n";
                     ScrollArea::vertical()
                         .auto_shrink([false; 2])
