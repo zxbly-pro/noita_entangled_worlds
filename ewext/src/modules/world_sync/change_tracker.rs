@@ -12,6 +12,7 @@ pub(crate) struct ChangeTracker {
 
 impl ChangeTracker {
     const CHUNKLET_SIZE: isize = 1 << CHUNKLET_SIZE_POWER;
+    const DEBUG_MARKERS: bool = false;
 
     pub fn new() -> Self {
         Self {
@@ -66,20 +67,21 @@ impl ChangeTracker {
         }
 
         let limit = 2048 * 4;
-        for (changed, amount) in &self.changed {
-            if *amount >= limit {
-                // print!("amount: {}", amount);
-                game_create_sprite_for_x_frames(
-                    "mods/quant.ew/files/resource/debug/marker.png".into(),
-                    (changed.0 << CHUNKLET_SIZE_POWER) as f64,
-                    (changed.1 << CHUNKLET_SIZE_POWER) as f64,
-                    Some(false),
-                    Some(0.0),
-                    Some(0.0),
-                    Some(2),
-                    Some(true),
-                )
-                .unwrap();
+        if Self::DEBUG_MARKERS {
+            for (changed, amount) in &self.changed {
+                if *amount >= limit {
+                    game_create_sprite_for_x_frames(
+                        "mods/quant.ew/files/resource/debug/marker.png".into(),
+                        (changed.0 << CHUNKLET_SIZE_POWER) as f64,
+                        (changed.1 << CHUNKLET_SIZE_POWER) as f64,
+                        Some(false),
+                        Some(0.0),
+                        Some(0.0),
+                        Some(2),
+                        Some(true),
+                    )
+                    .unwrap();
+                }
             }
         }
         let should_update = self

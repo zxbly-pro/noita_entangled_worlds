@@ -53,6 +53,7 @@ noita_connected = 本地Noita实例已连接。
 netman_save_lobby = 将大厅id保存到剪贴板
 netman_show_settings = 显示设置窗口
 netman_apply_settings = 应用设置并在下一次启动时生效
+apply_default_settings = 重置设置为默认值
 
 ip_note = 注意：使用steam联机更可靠，如果可以的话请使用steam联机
 ip_connect = 连接至IP
@@ -89,7 +90,7 @@ connect_settings_autostart = 自动启动游戏
 
 ## Game settings
 
-Player-have-same-starting-loadout = Player have same starting loadout
+Player-have-same-starting-loadout = 玩家拥有相同的初始装备
 connect_settings_spacewars = 允许使用Steam网络联机，即使你没有在Steam上购买游戏，如果你有GOG版本的游戏。所有玩家都需要勾选此选项才能生效，重启noita-proxy以生效
 Health-per-player = 每个玩家的生命值
 Enable-friendly-fire = 启用队友伤害
@@ -167,15 +168,87 @@ hide-cursors-checkbox = 禁用其他人的光标
 hide-cursors-checkbox-tooltip = 有时候你可能会把朋友的光标和自己的混淆。在这种情况下，你可以通过这个复选框完全禁用它们。
 ## Steam connect
 
-Switch-mode-and-restart = Switch mode and restart
-Make-lobby-public = Make lobby public
+Switch-mode-and-restart = 切换模式并重启
+Make-lobby-public = 公开大厅
 ## Lobby list
 
-Open-lobby-list = Open lobby list
-Only-EW-lobbies = Only EW lobbies
-Join = Join
-Not-Entangled-Worlds-lobby = Not Entangled Worlds lobby
-No-public-lobbies-at-the-moment = No public lobbies at the moment :(
-Lobby-list-pending = Lobby list pending...
-Refresh = Refresh
-Lobby-list = Lobby list
+Open-lobby-list = 打开大厅列表
+Only-EW-lobbies = 仅限 EW 大厅
+Join = 加入
+Not-Entangled-Worlds-lobby = 非 Entangled Worlds 大厅
+No-public-lobbies-at-the-moment = 当前没有公开大厅 :(
+Lobby-list-pending = 正在获取大厅列表…
+Refresh = 刷新
+Lobby-list = 大厅列表
+
+## Gamemode names
+
+game_mode_Shared = 共享生命值
+game_mode_LocalNormal = 独立生命值
+game_mode_LocalPermadeath = 独立生命值（永久死亡）
+game_mode_LocalAlternate = 独立生命值（替代）
+game_mode_PvP = PvP
+Local-health-pvp = 独立生命值 PvP
+round-based-pvp-mode = 回合制 PvP 模式
+pvp-money-steal-percent = 击杀时偷取金钱的百分比
+pvp-dont-steal = 不偷取金钱，仅获得击杀奖励
+pvp-spawn-chest-on-win = 胜利时生成宝箱
+pvp-timed-rounds-hm = 计时回合/HM
+pvp-wait-on-time = 按时间结束回合
+pvp-time-in-hm = HM 阶段时间
+pvp-time-in-round = 回合时间
+pvp-wait-on-players = 等待所有玩家完成回合后再开始下一回合
+world-generation = 世界生成
+duplicate-synced-entities = 复制同步的实体
+fix-unseen-chunks = 修复不可见区块内的黑洞/爆炸
+disable-kummitus-non-hosts = 在非房主禁用 Kummitus
+give-host-sampo-on-collection = 收集时给予房主 Sampo
+spell-ban-list-desc = 法术禁用列表（使用内部名称，逗号分隔）
+player-settings = 玩家设置
+Share-Gold = 共享金币
+Perks = 天赋
+perk-ban-list-desc = 天赋禁用列表（使用内部名称，逗号分隔）
+global-perks-ignore-desc = 要忽略的全局天赋（内部名称，逗号分隔）。可能导致未定义行为，请勿反馈相关问题。列表见 perk_fns.lua
+audio-dropoff-rate = 他人语音的衰减速率
+audio-max-range = 语音最大范围
+audio-global-input-volume = 全局输入音量
+audio-global-output-volume = 全局输出音量
+audio-loopback = 环回音频
+audio-global-playback = 始终全局播放语音
+audio-push-to-talk = 按键说话（键位在 Noita 内设置，默认 T）
+audio-use-player-position = 使用玩家位置而非镜头位置
+audio-mute-input = 静音输入
+audio-mute-input-polied = 被石化时静音输入
+audio-mute-input-dead = 死亡时静音输入
+audio-mute-output = 静音输出
+audio-disabled = 禁用
+audio-input-device-label = 输入设备
+audio-output-device-label = 输出设备
+Show-host-settings = 显示主机设置
+Show-audio-settings = 显示音频设置
+Close-Proxy = 关闭 Proxy
+Failed-to-request-lobby-list = 获取大厅列表失败
+reset-all-data = 重置所有数据
+Allow-friends = 允许好友加入
+nickname = 昵称
+Lobby = 大厅
+Game-Settings = 游戏设置
+VoIP-Settings = 语音设置
+Chunk-Map = 区块地图
+Noita-Log = Noita 日志
+Proxy-Log = Proxy 日志
+Connection-Info = 连接信息
+Ban-List = 封禁列表
+Mod-List = Mod 列表
+Back-out = 返回
+Netmanager-stopped = 网络管理线程已停止
+With-error = 错误信息如下：
+No-lobby-created-yet = 尚未创建大厅
+save-colors = 保存颜色
+requires-noita-restart = 需要重启 Noita
+dont-let-more-players-join = 不允许更多玩家加入
+dont-send-chunk-map-to-players = 不向玩家发送区块地图
+dont-save-chunk-map-desc = 不保存区块地图；由于当前实现，在长时间游玩中会导致 RAM/VRAM 泄漏，因此默认禁用
+no-conn-info-tangled = 在 Tangled 模式下无连接信息
+save-to-clipboard = 保存到剪贴板
+Pending-settings-note = 等待中的设置将在本次游玩结束后生效

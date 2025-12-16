@@ -196,7 +196,7 @@ impl GameSettings {
                             .radio_value(
                                 &mut temp,
                                 GameMode::LocalHealth(LocalHealthMode::PvP),
-                                "PvP",
+                                tr("Local-health-pvp"),
                             )
                             .changed()
                     {
@@ -281,10 +281,10 @@ impl GameSettings {
                             }
 
                             LocalHealthMode::PvP => {
-                                ui.label("round based pvp mode");
+                                ui.label(tr("round-based-pvp-mode"));
                                 ui.add_space(5.0);
                                 {
-                                    ui.label("% money stolen on kill");
+                                    ui.label(tr("pvp-money-steal-percent"));
                                     let mut temp =
                                         game_settings.pvp_kill_steal.unwrap_or(def.pvp_kill_steal);
                                     if ui.add(Slider::new(&mut temp, 0..=100)).changed() {
@@ -295,7 +295,7 @@ impl GameSettings {
                                     let mut temp =
                                         game_settings.dont_steal.unwrap_or(def.dont_steal);
                                     if ui
-                                        .checkbox(&mut temp, "just gain money instead of stealing")
+                                        .checkbox(&mut temp, tr("pvp-dont-steal"))
                                         .changed()
                                     {
                                         game_settings.dont_steal = Some(temp)
@@ -304,12 +304,12 @@ impl GameSettings {
                                 {
                                     let mut temp =
                                         game_settings.chest_on_win.unwrap_or(def.chest_on_win);
-                                    if ui.checkbox(&mut temp, "spawns chest on win").changed() {
+                                    if ui.checkbox(&mut temp, tr("pvp-spawn-chest-on-win")).changed() {
                                         game_settings.chest_on_win = Some(temp)
                                     }
                                 }
                                 let mut timed = game_settings.timed.unwrap_or(def.timed);
-                                if ui.checkbox(&mut timed, "timed rounds/hm").changed() {
+                                if ui.checkbox(&mut timed, tr("pvp-timed-rounds-hm")).changed() {
                                     game_settings.timed = Some(timed)
                                 }
                                 if timed {
@@ -318,14 +318,14 @@ impl GameSettings {
                                             .wait_for_time
                                             .unwrap_or(def.wait_for_time);
                                         if ui
-                                            .checkbox(&mut temp, "wait on time to finish round")
+                                            .checkbox(&mut temp, tr("pvp-wait-on-time"))
                                             .changed()
                                         {
                                             game_settings.wait_for_time = Some(temp)
                                         }
                                     }
                                     {
-                                        ui.label("time in hm");
+                                        ui.label(tr("pvp-time-in-hm"));
                                         let mut temp =
                                             game_settings.time_in_hm.unwrap_or(def.time_in_hm);
                                         if ui.add(Slider::new(&mut temp, 30..=1200)).changed() {
@@ -333,7 +333,7 @@ impl GameSettings {
                                         }
                                     }
                                     {
-                                        ui.label("time in round");
+                                        ui.label(tr("pvp-time-in-round"));
                                         let mut temp =
                                             game_settings.time_out_hm.unwrap_or(def.time_out_hm);
                                         if ui.add(Slider::new(&mut temp, 30..=1200)).changed() {
@@ -347,7 +347,7 @@ impl GameSettings {
                                     if ui
                                         .checkbox(
                                             &mut temp,
-                                            "wait on players to finish round to start next round",
+                                            tr("pvp-wait-on-players"),
                                         )
                                         .changed()
                                     {
@@ -373,7 +373,7 @@ impl GameSettings {
                 }
             }
             ui.add_space(10.0);
-            ui.label("World generation");
+            ui.label(tr("world-generation"));
             ui.horizontal(|ui| {
                 ui.checkbox(
                     &mut game_settings.use_constant_seed,
@@ -388,7 +388,7 @@ impl GameSettings {
             {
                 let mut temp = game_settings.duplicate.unwrap_or(def.duplicate);
                 if ui
-                    .checkbox(&mut temp, "duplicate synced entities")
+                    .checkbox(&mut temp, tr("duplicate-synced-entities"))
                     .changed()
                 {
                     game_settings.duplicate = Some(temp)
@@ -399,10 +399,7 @@ impl GameSettings {
                     .nice_terraforming
                     .unwrap_or(def.nice_terraforming);
                 if ui
-                    .checkbox(
-                        &mut temp,
-                        "fix blackholes/explosions to work in unseen chunks",
-                    )
+                    .checkbox(&mut temp, tr("fix-unseen-chunks"))
                     .changed()
                 {
                     game_settings.nice_terraforming = Some(temp)
@@ -413,7 +410,7 @@ impl GameSettings {
                     .disable_kummitus
                     .unwrap_or(def.disable_kummitus);
                 if ui
-                    .checkbox(&mut temp, "disable kummitus on non hosts")
+                    .checkbox(&mut temp, tr("disable-kummitus-non-hosts"))
                     .changed()
                 {
                     game_settings.disable_kummitus = Some(temp)
@@ -422,7 +419,7 @@ impl GameSettings {
             {
                 let mut temp = game_settings.give_host_sampo.unwrap_or(def.give_host_sampo);
                 if ui
-                    .checkbox(&mut temp, "give host sampo on collection")
+                    .checkbox(&mut temp, tr("give-host-sampo-on-collection"))
                     .changed()
                 {
                     game_settings.give_host_sampo = Some(temp)
@@ -446,7 +443,7 @@ impl GameSettings {
                     .spell_ban_list
                     .clone()
                     .unwrap_or(def.spell_ban_list);
-                ui.label("spell ban list, by internal names, comma seperated");
+                ui.label(tr("spell-ban-list-desc"));
                 if ui
                     .add_sized(
                         [ui.available_width() - 30.0, 20.0],
@@ -458,7 +455,7 @@ impl GameSettings {
                 }
             }
             ui.add_space(10.0);
-            ui.label("Player settings");
+            ui.label(tr("player-settings"));
             ui.horizontal(|ui| {
                 ui.label(tr("connect_settings_max_players"));
                 let mut temp = game_settings.max_players.unwrap_or(def.max_players);
@@ -474,7 +471,7 @@ impl GameSettings {
             }
             {
                 let mut temp = game_settings.share_gold.unwrap_or(def.share_gold);
-                if ui.checkbox(&mut temp, "Share Gold").changed() {
+                if ui.checkbox(&mut temp, tr("Share-Gold")).changed() {
                     game_settings.share_gold = Some(temp)
                 }
             }
@@ -497,7 +494,7 @@ impl GameSettings {
                 }
             }
             ui.add_space(10.0);
-            ui.label("Perks");
+            ui.label(tr("Perks"));
             {
                 let mut temp = game_settings.randomize_perks.unwrap_or(def.randomize_perks);
                 if ui
@@ -515,7 +512,7 @@ impl GameSettings {
                     .perk_ban_list
                     .clone()
                     .unwrap_or(def.perk_ban_list);
-                ui.label("perk ban list, by internal names, comma seperated");
+                ui.label(tr("perk-ban-list-desc"));
                 if ui
                     .add_sized(
                         [ui.available_width() - 30.0, 20.0],
@@ -531,7 +528,7 @@ impl GameSettings {
                     .disabled_globals
                     .clone()
                     .unwrap_or(def.disabled_globals);
-                ui.label("global perks to ignore, by internal names, comma seperated, will cause undefined behaviour do not report issues, find list in perk_fns.lua");
+                ui.label(tr("global-perks-ignore-desc"));
                 if ui
                     .add_sized(
                         [ui.available_width() - 30.0, 20.0],
@@ -896,7 +893,7 @@ impl EndRunButton {
                 netman.end_run.store(true, Ordering::Relaxed);
             };
             if dirty {
-                ui.label("PENDING SETTINGS NOT SET UNTIL RUN ENDS");
+                ui.label(tr("Pending-settings-note"));
             }
         });
     }
@@ -930,46 +927,46 @@ pub struct AudioSettings {
 impl AudioSettings {
     fn show_ui(&mut self, ui: &mut Ui, main: bool) -> bool {
         let mut changed = false;
-        ui.label("drop off rate of audio from others");
+        ui.label(tr("audio-dropoff-rate"));
         changed |= ui
             .add(Slider::new(&mut self.dropoff, 0.0..=128.0))
             .changed();
-        ui.label("maximal range of audio");
+        ui.label(tr("audio-max-range"));
         changed |= ui.add(Slider::new(&mut self.range, 0..=4096)).changed();
-        ui.label("global input volume");
+        ui.label(tr("audio-global-input-volume"));
         changed |= ui
             .add(Slider::new(&mut self.global_input_volume, 0.0..=8.0))
             .changed();
-        ui.label("global output volume");
+        ui.label(tr("audio-global-output-volume"));
         changed |= ui
             .add(Slider::new(&mut self.global_output_volume, 0.0..=8.0))
             .changed();
-        changed |= ui.checkbox(&mut self.loopback, "loopback audio").changed();
+        changed |= ui.checkbox(&mut self.loopback, tr("audio-loopback")).changed();
         changed |= ui
-            .checkbox(&mut self.global, "have voice always be played")
+            .checkbox(&mut self.global, tr("audio-global-playback"))
             .changed();
         changed |= ui
             .checkbox(
                 &mut self.push_to_talk,
-                "push to talk, keybinds in noita, T by default",
+                tr("audio-push-to-talk"),
             )
             .changed();
         changed |= ui
             .checkbox(
                 &mut self.player_position,
-                "use player position rather than camera position",
+                tr("audio-use-player-position"),
             )
             .changed();
-        changed |= ui.checkbox(&mut self.mute_in, "mute input").changed();
+        changed |= ui.checkbox(&mut self.mute_in, tr("audio-mute-input")).changed();
         changed |= ui
-            .checkbox(&mut self.mute_in_while_polied, "mute input while polied")
+            .checkbox(&mut self.mute_in_while_polied, tr("audio-mute-input-polied"))
             .changed();
         changed |= ui
-            .checkbox(&mut self.mute_in_while_dead, "mute input while dead")
+            .checkbox(&mut self.mute_in_while_dead, tr("audio-mute-input-dead"))
             .changed();
-        changed |= ui.checkbox(&mut self.mute_out, "mute output").changed();
+        changed |= ui.checkbox(&mut self.mute_out, tr("audio-mute-output")).changed();
         if main {
-            changed |= ui.checkbox(&mut self.disabled, "disabled").changed();
+            changed |= ui.checkbox(&mut self.disabled, tr("audio-disabled")).changed();
             if self.input_devices.is_empty() {
                 #[cfg(target_os = "linux")]
                 let host = cpal::available_hosts()
@@ -994,7 +991,7 @@ impl AudioSettings {
                     self.output_device = host.default_output_device().and_then(|a| a.name().ok())
                 }
             }
-            ComboBox::from_label("Input Device")
+            ComboBox::from_label(tr("audio-input-device-label"))
                 .selected_text(
                     self.input_device
                         .clone()
@@ -1011,7 +1008,7 @@ impl AudioSettings {
                         }
                     }
                 });
-            ComboBox::from_label("Output Device")
+            ComboBox::from_label(tr("audio-output-device-label"))
                 .selected_text(
                     self.output_device
                         .clone()
@@ -1029,7 +1026,7 @@ impl AudioSettings {
                     }
                 });
         }
-        if ui.button("default").clicked() {
+        if ui.button(tr("apply_default_settings")).clicked() {
             *self = Default::default();
             changed = true;
         }
@@ -1735,19 +1732,19 @@ impl App {
                         ui.set_min_size(ui.available_size());
                         ScrollArea::both().auto_shrink(false).show(ui, |ui| {
                             self.show_local_settings(ui);
-                            if ui.button("Show host settings").clicked() {
+                            if ui.button(tr("Show-host-settings")).clicked() {
                                 self.show_host_settings = !self.show_host_settings
                             }
                             if self.show_host_settings {
                                 self.app_saved_state.game_settings.show_editor(ui, true)
                             }
-                            if ui.button("Show audio settings").clicked() {
+                            if ui.button(tr("Show-audio-settings")).clicked() {
                                 self.show_audio_settings = !self.show_audio_settings
                             }
                             if self.show_audio_settings {
                                 self.audio.show_ui(ui, true);
                             }
-                            if self.running_on_steamdeck && ui.button("Close Proxy").clicked() {
+                            if self.running_on_steamdeck && ui.button(tr("Close-Proxy")).clicked() {
                                 exit(0)
                             }
                         });
@@ -1865,7 +1862,7 @@ impl App {
                                 }
                             }
                             steam_helper::MaybeLobbyList::Errored => {
-                                ui.label("Failed to request lobby list");
+                                ui.label(tr("Failed-to-request-lobby-list"));
                             }
                         }
                     });
@@ -1899,7 +1896,7 @@ impl App {
             ctx.open_url(OpenUrl::new_tab("https://discord.gg/uAK7utvVWN"));
         }
         let secret_active = ui.input(|i| i.modifiers.ctrl && i.key_down(Key::D));
-        if secret_active && ui.button("reset all data").clicked() {
+        if secret_active && ui.button(tr("reset-all-data")).clicked() {
             self.app_saved_state = Default::default();
             self.modmanager_settings = Default::default();
             self.state = AppState::LangPick;
@@ -1919,7 +1916,7 @@ impl App {
                     &mut self.app_saved_state.public_lobby,
                     tr("Make-lobby-public"),
                 );
-                ui.checkbox(&mut self.app_saved_state.allow_friends, "Allow friends");
+                ui.checkbox(&mut self.app_saved_state.allow_friends, tr("Allow-friends"));
                 if ui.button(tr("connect_steam_connect")).clicked() {
                     let id = self.clipboard.as_mut().and_then(|c| c.get_text().ok());
                     match id {
@@ -1993,7 +1990,7 @@ impl App {
             );
             if ui
                 .horizontal(|ui| {
-                    ui.label("nickname");
+                    ui.label(tr("nickname"));
                     ui.text_edit_singleline(&mut temp)
                 })
                 .inner
@@ -2164,44 +2161,44 @@ impl App {
         egui::CentralPanel::default().show(ctx, |ui| {
             ui.horizontal(|ui| {
                 let last = self.connected_menu;
-                ui.selectable_value(&mut self.connected_menu, ConnectedMenu::Normal, "Lobby");
+                ui.selectable_value(&mut self.connected_menu, ConnectedMenu::Normal, tr("Lobby"));
                 ui.selectable_value(
                     &mut self.connected_menu,
                     ConnectedMenu::Settings,
-                    "Game Settings",
+                    tr("Game-Settings"),
                 );
                 ui.selectable_value(
                     &mut self.connected_menu,
                     ConnectedMenu::VoIP,
-                    "VoIP Settings",
+                    tr("VoIP-Settings"),
                 );
-                ui.selectable_value(&mut self.connected_menu, ConnectedMenu::Map, "Chunk Map");
+                ui.selectable_value(&mut self.connected_menu, ConnectedMenu::Map, tr("Chunk-Map"));
                 ui.selectable_value(
                     &mut self.connected_menu,
                     ConnectedMenu::NoitaLog,
-                    "Noita Log",
+                    tr("Noita-Log"),
                 );
                 ui.selectable_value(
                     &mut self.connected_menu,
                     ConnectedMenu::ProxyLog,
-                    "Proxy Log",
+                    tr("Proxy-Log"),
                 );
                 if netman.peer.is_steam() {
                     ui.selectable_value(
                         &mut self.connected_menu,
                         ConnectedMenu::ConnectionInfo,
-                        "Connection Info",
+                        tr("Connection-Info"),
                     );
                 }
                 if !netman.ban_list.lock().unwrap().is_empty() {
                     ui.selectable_value(
                         &mut self.connected_menu,
                         ConnectedMenu::BanList,
-                        "Ban List",
+                        tr("Ban-List"),
                     );
                 }
                 if !netman.active_mods.lock().unwrap().is_empty() {
-                    ui.selectable_value(&mut self.connected_menu, ConnectedMenu::Mods, "Mod List");
+                    ui.selectable_value(&mut self.connected_menu, ConnectedMenu::Mods, tr("Mod-List"));
                 }
                 if last == ConnectedMenu::Settings && last != self.connected_menu {
                     let new_settings = self.app_saved_state.game_settings.clone();
@@ -2216,15 +2213,15 @@ impl App {
                         .store(old_settings != new_settings, Ordering::Relaxed)
                 }
                 ui.add_space(ui.available_width() - 56.0);
-                if ui.button("Back out").clicked() {
+                if ui.button(tr("Back-out")).clicked() {
                     goto_menu = true
                 }
             });
             ui.separator();
             if stopped {
-                ui.colored_label(Color32::LIGHT_RED, "Netmanager thread has stopped");
+                ui.colored_label(Color32::LIGHT_RED, tr("Netmanager-stopped"));
                 if let Some(err) = netman.error.lock().unwrap().as_ref() {
-                    ui.label("With the following error:");
+                    ui.label(tr("With-error"));
                     ui.label(err.to_string());
                 }
                 ui.separator();
@@ -2256,7 +2253,7 @@ impl App {
                                 self.copied_lobby = true;
                             }
                         } else {
-                            ui.label("No lobby created yet");
+                            ui.label(tr("No-lobby-created-yet"));
                         }
                     }
                     self.appearance.mina_color_picker(
@@ -2266,14 +2263,14 @@ impl App {
                     );
                     ui.add_space(15.0);
                     ui.horizontal(|ui| {
-                        if ui.button("save colors").clicked() {
+                        if ui.button(tr("save-colors")).clicked() {
                             let desc = self
                                 .appearance
                                 .create_png_desc(self.modmanager_settings.game_save_path.clone());
                             netman.new_desc(desc, self.player_image.clone());
                             *netman.new_desc.lock().unwrap() = Some(desc);
                         };
-                        ui.label("requires noita restart")
+                        ui.label(tr("requires-noita-restart"))
                     });
                     ui.add_space(15.0);
                     if accept_local && !local_connected {
@@ -2308,7 +2305,7 @@ impl App {
                         {
                             let mut temp = netman.no_more_players.load(Ordering::Relaxed);
                             if ui
-                                .checkbox(&mut temp, "don't let more players join")
+                                .checkbox(&mut temp, tr("dont-let-more-players-join"))
                                 .changed()
                             {
                                 netman.no_more_players.store(temp, Ordering::Relaxed);
@@ -2317,7 +2314,7 @@ impl App {
                         {
                             let mut temp = netman.no_chunkmap_to_players.load(Ordering::Relaxed);
                             if ui
-                                .checkbox(&mut temp, "don't send chunk map to players")
+                                .checkbox(&mut temp, tr("dont-send-chunk-map-to-players"))
                                 .changed()
                             {
                                 netman.no_chunkmap_to_players.store(temp, Ordering::Relaxed);
@@ -2325,7 +2322,7 @@ impl App {
                         }
                         {
                             let mut temp = netman.no_chunkmap.load(Ordering::Relaxed);
-                            if ui.checkbox(&mut temp, "don't save chunk map, chunkmap is disabled by default do to current implementation ram/vram leaking on long runs").changed() {
+                            if ui.checkbox(&mut temp, tr("dont-save-chunk-map-desc")).changed() {
                                 netman.no_chunkmap.store(temp, Ordering::Relaxed);
                             }
                         }
@@ -2365,7 +2362,7 @@ impl App {
                 }
                 ConnectedMenu::ConnectionInfo => match &netman.peer {
                     PeerVariant::Tangled(_) => {
-                        ui.label("No connection info available in tangled mode");
+                        ui.label(tr("no-conn-info-tangled"));
                     }
                     PeerVariant::Steam(peer) => {
                         let steam = self.steam_state.as_ref().unwrap();
@@ -2415,7 +2412,7 @@ impl App {
                                 ui.add(Slider::new(&mut self.noitalog_number, 0..=l - 1));
                             }
                             if let Some(clipboard) = self.clipboard.as_mut()
-                                && ui.button("save to clipboard").clicked() {
+                                && ui.button(tr("save-to-clipboard")).clicked() {
                                     let _ = clipboard.set_text(&s);
                                 }
                         });
