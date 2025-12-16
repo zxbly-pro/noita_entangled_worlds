@@ -317,9 +317,7 @@ impl GameSettings {
                                         let mut temp = game_settings
                                             .wait_for_time
                                             .unwrap_or(def.wait_for_time);
-                                        if ui
-                                            .checkbox(&mut temp, tr("pvp-wait-on-time"))
-                                            .changed()
+                                        if ui.checkbox(&mut temp, tr("pvp-wait-on-time")).changed()
                                         {
                                             game_settings.wait_for_time = Some(temp)
                                         }
