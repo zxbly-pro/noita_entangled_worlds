@@ -47,6 +47,7 @@ where
 {
     type Item = T;
 
+    #[allow(clippy::never_loop)]
     fn next(&mut self) -> Option<Self::Item> {
         loop {
             let Some(a_element) = self.a.peek() else {
@@ -102,6 +103,7 @@ where
 {
     type Item = T;
 
+    #[allow(clippy::never_loop)]
     fn next(&mut self) -> Option<Self::Item> {
         loop {
             let Some(a_element) = self.a.peek() else {
@@ -174,7 +176,6 @@ impl Module for WorldSync {
         let tracked_radius = 2;
         let tracked_square = tracked_radius * 2 + 1;
         let mut tracked_chunks = (0..tracked_square * tracked_square)
-            .into_iter()
             .filter_map(|i| {
                 let dx = i % tracked_square;
                 let dy = i / tracked_square;
