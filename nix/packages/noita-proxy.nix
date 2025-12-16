@@ -84,9 +84,9 @@ rustPlatform.buildRustPackage (finalAttrs:
 
     meta = {
       inherit (manifest.package) description;
-      homepage = "https://github.com/IntQuant/noita_entangled_worlds";
+      homepage = "https://github.com/zxbly-pro/noita_entangled_worlds";
       changelog =
-        "https://github.com/IntQuant/noita_entangled_worlds/releases/tag/v${version}";
+        "https://github.com/zxbly-pro/noita_entangled_worlds/releases/tag/v${version}";
       license = with lib.licenses; [ mit asl20 ];
       platforms = [ "x86_64-linux" ];
       maintainers = with lib.maintainers; [ spikespaz ];
