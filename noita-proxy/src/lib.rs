@@ -317,12 +317,14 @@ impl GameSettings {
                                         let mut temp = game_settings
                                             .wait_for_time
                                             .unwrap_or(def.wait_for_time);
-                                    if ui.checkbox(&mut temp, tr("pvp-wait-on-time")).changed() {
-                                        game_settings.wait_for_time = Some(temp)
+                                        if ui.checkbox(&mut temp, tr("pvp-wait-on-time")).changed()
+                                        {
+                                            game_settings.wait_for_time = Some(temp)
+                                        }
                                     }
-                                    }
-                                    {
-                                        ui.label(tr("pvp-time-in-hm"));
+                                }
+                                {
+                                    ui.label(tr("pvp-time-in-hm"));
                                         let mut temp =
                                             game_settings.time_in_hm.unwrap_or(def.time_in_hm);
                                         if ui.add(Slider::new(&mut temp, 30..=1200)).changed() {
@@ -941,7 +943,9 @@ impl AudioSettings {
         changed |= ui
             .checkbox(&mut self.player_position, tr("audio-use-player-position"))
             .changed();
-        changed |= ui.checkbox(&mut self.mute_in, tr("audio-mute-input")).changed();
+        changed |= ui
+            .checkbox(&mut self.mute_in, tr("audio-mute-input"))
+            .changed();
         changed |= ui
             .checkbox(&mut self.mute_in_while_polied, tr("audio-mute-input-polied"))
             .changed();
@@ -952,7 +956,9 @@ impl AudioSettings {
             .checkbox(&mut self.mute_out, tr("audio-mute-output"))
             .changed();
         if main {
-            changed |= ui.checkbox(&mut self.disabled, tr("audio-disabled")).changed();
+            changed |= ui
+                .checkbox(&mut self.disabled, tr("audio-disabled"))
+                .changed();
             if self.input_devices.is_empty() {
                 #[cfg(target_os = "linux")]
                 let host = cpal::available_hosts()
@@ -2158,7 +2164,11 @@ impl App {
                     ConnectedMenu::VoIP,
                     tr("VoIP-Settings"),
                 );
-                ui.selectable_value(&mut self.connected_menu, ConnectedMenu::Map, tr("Chunk-Map"));
+                ui.selectable_value(
+                    &mut self.connected_menu,
+                    ConnectedMenu::Map,
+                    tr("Chunk-Map"),
+                );
                 ui.selectable_value(
                     &mut self.connected_menu,
                     ConnectedMenu::NoitaLog,
@@ -2184,7 +2194,11 @@ impl App {
                     );
                 }
                 if !netman.active_mods.lock().unwrap().is_empty() {
-                    ui.selectable_value(&mut self.connected_menu, ConnectedMenu::Mods, tr("Mod-List"));
+                    ui.selectable_value(
+                        &mut self.connected_menu,
+                        ConnectedMenu::Mods,
+                        tr("Mod-List"),
+                    );
                 }
                 if last == ConnectedMenu::Settings && last != self.connected_menu {
                     let new_settings = self.app_saved_state.game_settings.clone();
@@ -2213,17 +2227,18 @@ impl App {
                 ui.separator();
             }
             if let Some(game) = self.modmanager_settings.game_exe_path.parent()
-                && let Ok(s) = fs::read_to_string(game.join("logger.txt")) {
-                    let l = self.noitalog.len();
-                    if l != 0 && s.len() >= self.noitalog[l - 1].len() {
-                        if s.len() != self.noitalog[l - 1].len() {
-                            self.noitalog[l - 1] = s
-                        }
-                    } else {
-                        self.noitalog_number = self.noitalog.len();
-                        self.noitalog.push(s);
+                && let Ok(s) = fs::read_to_string(game.join("logger.txt"))
+            {
+                let l = self.noitalog.len();
+                if l != 0 && s.len() >= self.noitalog[l - 1].len() {
+                    if s.len() != self.noitalog[l - 1].len() {
+                        self.noitalog[l - 1] = s
                     }
+                } else {
+                    self.noitalog_number = self.noitalog.len();
+                    self.noitalog.push(s);
                 }
+            }
             match self.connected_menu {
                 ConnectedMenu::Normal => {
                     if netman.peer.is_steam() {
@@ -2308,7 +2323,10 @@ impl App {
                         }
                         {
                             let mut temp = netman.no_chunkmap.load(Ordering::Relaxed);
-                            if ui.checkbox(&mut temp, tr("dont-save-chunk-map-desc")).changed() {
+                            if ui
+                                .checkbox(&mut temp, tr("dont-save-chunk-map-desc"))
+                                .changed()
+                            {
                                 netman.no_chunkmap.store(temp, Ordering::Relaxed);
                             }
                         }
