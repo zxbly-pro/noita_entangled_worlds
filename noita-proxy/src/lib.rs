@@ -476,7 +476,7 @@ impl GameSettings {
             {
                 let mut temp = game_settings.home_on_players.unwrap_or(def.home_on_players);
                 if ui
-                    .checkbox(&mut temp, "have homing home on players")
+                    .checkbox(&mut temp, tr("Have-homing-home-on-players"))
                     .changed()
                 {
                     game_settings.home_on_players = Some(temp)

@@ -103,6 +103,7 @@ global_hp_loss = 全局生命值损失
 no_material_damage = notplayer不受到材料伤害
 perma_death = 玩家永久死亡
 physics_damage = notplayer受到物理伤害
+Have-homing-home-on-players = 使制导追踪玩家
 shared_health_desc_1 = 生命值共享，值会随着玩家数量变化
 shared_health_desc_2 = 调整基于百分比的伤害和完全恢复。
 shared_health_desc_3 = 原始模式。
@@ -134,6 +135,7 @@ Arm-color = 手臂颜色
 Alt-color = 次色调
 Main-color = 主色调
 Reset-colors-to-default = 将颜色重置为默认值
+Invert-border = 反转边框
 Shift-hue = 调整色相
 
 ## Connected
@@ -201,8 +203,8 @@ pvp-wait-on-players = 等待所有玩家完成回合后再开始下一回合
 world-generation = 世界生成
 duplicate-synced-entities = 复制同步的实体
 fix-unseen-chunks = 修复不可见区块内的黑洞/爆炸
-disable-kummitus-non-hosts = 在非房主禁用 Kummitus
-give-host-sampo-on-collection = 收集时给予房主 Sampo
+disable-kummitus-non-hosts = 在非房主禁用上次死亡的幽灵
+give-host-sampo-on-collection = 收集时给予房主三宝磨
 spell-ban-list-desc = 法术禁用列表（使用内部名称，逗号分隔）
 player-settings = 玩家设置
 Share-Gold = 共享金币

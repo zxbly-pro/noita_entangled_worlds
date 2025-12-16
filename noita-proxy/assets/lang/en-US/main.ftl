@@ -103,6 +103,7 @@ global_hp_loss = Lose HP globally
 no_material_damage = No material damage
 perma_death = Perma death
 physics_damage = Physics damage
+Have-homing-home-on-players = Homing targets players
 shared_health_desc_1 = Health is shared, but scales with player count.
 shared_health_desc_2 = Percentage-based damage and full heals are adjusted.
 shared_health_desc_3 = The original mode.
@@ -134,6 +135,7 @@ Arm-color = Arm color
 Alt-color = Alt color
 Main-color = Main color
 Reset-colors-to-default = Reset colors to default
+Invert-border = Invert border
 Shift-hue = Shift hue
 
 ## Connected
