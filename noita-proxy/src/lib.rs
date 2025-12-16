@@ -317,14 +317,15 @@ impl GameSettings {
                                         let mut temp = game_settings
                                             .wait_for_time
                                             .unwrap_or(def.wait_for_time);
-                                        if ui.checkbox(&mut temp, tr("pvp-wait-on-time")).changed()
+                                        if ui
+                                            .checkbox(&mut temp, tr("pvp-wait-on-time"))
+                                            .changed()
                                         {
                                             game_settings.wait_for_time = Some(temp)
                                         }
                                     }
-                                }
-                                {
-                                    ui.label(tr("pvp-time-in-hm"));
+                                    {
+                                        ui.label(tr("pvp-time-in-hm"));
                                         let mut temp =
                                             game_settings.time_in_hm.unwrap_or(def.time_in_hm);
                                         if ui.add(Slider::new(&mut temp, 30..=1200)).changed() {
